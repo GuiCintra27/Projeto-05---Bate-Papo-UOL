@@ -1,0 +1,54 @@
+/* FONTES */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* FORMATAÇÕES BASE */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    /* outline: 1px solid limegreen !important; */
+}
+
+html {
+    --body-background: #EEF9BF;
+    --card-color: #A7E9AF;
+    --border-color: #99CEA8;
+    --text-color: #75B79E;
+    font-size: 62.5%;
+}
+
+img{
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+body{
+
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(14px, 1.6rem, 2vw);
+
+    background: var(--body-background);
+}
+
+/* TELA DE LOGIN */
+
+
+
+/* CABEÇALHO */
+
+header{
+
+}
+
+/* LAYOUT DAS CONVERSAS */
+
+main{
+}
