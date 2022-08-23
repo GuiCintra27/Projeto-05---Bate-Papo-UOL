@@ -12,6 +12,49 @@
 </head>
 <body>
 
+    <!-- TELA DE LOGIN -->
+    <div id="Login" class="Hide">
+        <img src="images/Logo.svg" alt="Logo">
+        <div id="Login-input">
+            <input type="text" placeholder="Digite seu nome">
+            <button onclick="login()">Entrar</button>
+        </div>
+    </div>
+
+    <!-- CABEÇALHO DO CHAT -->
+    <header>
+        <img src="images/Logo.svg" alt="Logo">
+        <img src="images/People.svg" alt="Pessoas na sala" onclick="activeParticipants()">
+    </header>
+
+    <!-- MENSAGENS DE TEXTO -->
+    <main>
+        <div class="Status Message">
+            <p><time>(09:21:45) </time><strong>João</strong> entra na sala...</p>
+        </div>
+
+        <div class="Message">
+            <p><time>(09:21:45) </time><strong>João</strong> para <strong>Todos:</strong> Bom dia</p>
+        </div>
+
+        <div class="Message">
+            <p><time>(09:21:45) </time><strong>Maria</strong> para <strong>João:</strong> Oi João :)</p>
+        </div>
+
+        <div class="Reserved Message">
+            <p><time>(09:22:48) </time><strong>João</strong> reservadamente para <strong>Maria:</strong> Oi gatinha quer tc?</p>
+        </div>
+        
+        <div class="Status Message">
+            <p><time>(09:22:58) </time><strong>Maria</strong> sai da sala...</p>
+        </div>       
+    </main>
+
+    <!-- ÁREA DE ESCRITA DO USUÁRIO -->
+    <footer>
+        <textarea placeholder="Escreva aqui..."></textarea>
+        <img src="images/Send-message.svg" alt="Enviar mensagem">
+    </footer>
 
     <!-- SCRIPTS -->
     <script src="js/Index.js"></script>
