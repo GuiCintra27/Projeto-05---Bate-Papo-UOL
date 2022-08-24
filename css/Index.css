@@ -38,11 +38,12 @@ a{
 }
 
 body{
-    height: 100%;
+    height: 100vh;
     position: relative;
     font-family: 'Roboto', sans-serif;
     font-size: clamp(14px, 1.6rem, 2vw);
     background: var(--body-background);
+    overflow-y: hidden;
 }
 
 .Hide{
@@ -104,9 +105,17 @@ body{
     font-size: 18px;
 }
 
+#Login button:active{
+    filter: brightness(1.04);
+}
+
 /* CABEÇALHO */
 
 header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 12%;
     background: var(--white);
     display: flex;
     align-items: center;
@@ -128,10 +137,14 @@ header img:nth-child(2){
 /* LAYOUT DAS CONVERSAS */
 
 main{
+    margin-top: 20%;
+    width: 100%;
+    height: 77.5%;
     padding-top: 2.6rem;
     display: flex;
     flex-direction: column;
-    gap: .4rem;
+    gap: .6rem;
+    overflow-y: scroll;
 }
 
 .Message{
@@ -169,7 +182,7 @@ footer{
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 8rem;
+    height: 11.5%;
     background: var(--white);
     display: flex;
     justify-content: space-between;
@@ -208,13 +221,16 @@ footer img{
     height: 100vh;
     width: 100%;
     background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: right;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+#Transparent{
+    width: 93%;
 }
 
 nav{
     height: 100vh;
-    width: 70%;
     background: var(--white);
     display: flex;
     flex-direction: column;

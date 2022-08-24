@@ -16,15 +16,15 @@
     <div id="Login">
         <img src="images/Logo.svg" alt="Logo">
         <div id="Login-input">
-            <input type="text" placeholder="Digite seu nome">
-            <button onclick="login()">Entrar</button>
+            <input id="Login-name" type="text" placeholder="Digite seu nome">
+            <button onclick="login(document.getElementById('Login-name'), document.getElementById('Login'))">Entrar</button>
         </div>
     </div>
 
     <!-- CABEÇALHO DO CHAT -->
     <header>
         <img src="images/Logo.svg" alt="Logo">
-        <img src="images/People.svg" alt="Pessoas na sala" onclick="activeParticipants()">
+        <img src="images/People.svg" alt="Pessoas na sala" onclick="toggleMenuParticipants(document.getElementById('Menu'))">
     </header>
 
     <!-- MENSAGENS DE TEXTO -->
@@ -47,7 +47,7 @@
         
         <div class="Status Message">
             <p><time>(09:22:58) </time><strong>Maria</strong> sai da sala...</p>
-        </div>       
+        </div>  
     </main>
 
     <!-- ÁREA DE ESCRITA DO USUÁRIO -->
@@ -58,6 +58,7 @@
 
     <!-- MENU DE PARTICIPANTES DO CHAT -->
     <div id="Menu" class="Hide">
+        <div id="Transparent" onclick="toggleMenuParticipants(document.getElementById('Menu'))"></div>
         <nav>
             <h3>Escolha um contato para enviar mensagem:</h3>
             <ul>
@@ -82,26 +83,11 @@
                     </div>
                     <img src="images/Correct-icon.svg" alt="" class="Hide">
                 </li>
-            </ul>
-            <h3>Escolha a visibilidade:</h3>
-            <div id="Public">
-                <div>
-                    <img src="images/Lock-open.svg" alt="">
-                    <p>Público</p>
-                </div>
-                <img src="images/Correct-icon.svg" alt="" class="Hide">
-            </div>
-            <div id="Reserved">
-                <div>
-                    <img src="images/Lock-closed.svg" alt="">
-                    <p>Reservadamente</p>
-                </div>
-                <img src="images/Correct-icon.svg" alt="" class="Hide">
-            </div>
         </nav>
     </div>
 
     <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/Index.js"></script>
 </body>
 
