@@ -1,23 +1,21 @@
 let Login = '';
+const loginScreen = document.getElementById('Login');
 const url = 'https://mock-api.driven.com.br/api/v6/uol/participants';
 
-
-function login(userName, loginScreen){
+function login(userName){
     Login = {name: userName.value};
     const loginServer = axios.post(url, Login);
-    loginServer.then(logged(loginScreen));
-    loginServer.catch(error(userName));
+    loginServer.then(logged);
+    loginServer.catch(error);
 }
 
-function logged(loginScreen){
+function logged(){
     loginScreen.classList.add('Hide');
 }
 
-function error(userName){
-    alert(`Nome de usuário ${userName} já está em uso!`);
+function error(){
+    alert(`Nome de usuário "${Login.name}" já está em uso!`);
 }
-
-
 
 function toggleMenuParticipants(x){
     x.classList.toggle('Hide');
