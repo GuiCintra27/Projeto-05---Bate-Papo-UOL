@@ -36,8 +36,8 @@
 
     <!-- ÁREA DE ESCRITA DO USUÁRIO -->
     <footer>
-        <textarea placeholder="Escreva aqui..."></textarea>
-        <img src="images/Send-message.svg" alt="Enviar mensagem">
+        <textarea placeholder="Escreva aqui..." id="User_message"></textarea>
+        <img src="images/Send-message.svg" alt="Enviar mensagem"  onclick="sendMessage(document.getElementById('User_message'))">
     </footer>
 
     <!-- MENU DE PARTICIPANTES DO CHAT -->
@@ -49,7 +49,7 @@
                 <li>
                     <div>
                         <img src="images/People 2.svg" alt="">
-                        <p>Todos</p>
+                        <p class="To">Todos</p>
                     </div>
                     <img src="images/Correct-icon.svg" alt="" class="Hide">
                 </li>
@@ -67,6 +67,22 @@
                     </div>
                     <img src="images/Correct-icon.svg" alt="" class="Hide">
                 </li>
+            </ul>
+            <h3>Escolha a visibilidade:</h3>
+            <div id="Public">
+                <div>
+                    <img src="images/Lock-open.svg" alt="">
+                    <p class="Type">Público</p>
+                </div>
+                <img src="images/Correct-icon.svg" alt="" class="Hide">
+            </div>
+            <div id="Reserved">
+                <div>
+                    <img src="images/Lock-closed.svg" alt="">
+                    <p>Reservadamente</p>
+                </div>
+                <img src="images/Correct-icon.svg" alt="" class="Hide">
+            </div>
         </nav>
     </div>
 
