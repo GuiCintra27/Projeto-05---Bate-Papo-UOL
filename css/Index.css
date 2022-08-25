@@ -213,7 +213,7 @@ footer img{
     width: 2.6rem;
 }
 
-/* MENU DE MENSAGENS DIRETAS */
+/* MENU DE CONFIGURAÇÃO DAS MENSAGENS */
 
 #Menu{
     position: absolute;
@@ -251,6 +251,16 @@ nav ul{
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+#Participants{
+    max-height: 56vh;
+    overflow-y: scroll;
+}
+
+#Participants p{
+    width: 40vw;
+    overflow-x: scroll;
 }
 
 nav ul li, 

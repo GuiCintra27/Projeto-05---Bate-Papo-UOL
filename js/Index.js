@@ -1,13 +1,13 @@
 let Login = '';
 const loginScreen = document.getElementById('Login');
-const urlLogin = 'https://mock-api.driven.com.br/api/v6/uol/participants';
+const urlParticipants = 'https://mock-api.driven.com.br/api/v6/uol/participants';
 const urlConnection = 'https://mock-api.driven.com.br/api/v6/uol/status';
 const urlMessages = 'https://mock-api.driven.com.br/api/v6/uol/messages';
 const main = document.querySelector('main');
-
+/* 
 function login(userName) {
     Login = { name: userName.value };
-    let loginServer = axios.post(urlLogin, Login);
+    let loginServer = axios.post(urlParticipants, Login);
     loginServer.then(logged);
     loginServer.catch(error);
     setInterval(() => {
@@ -120,9 +120,62 @@ function messageSent(){
 
 function messageError(error){
     alert(`A mensagem não pode ser enviada! erro ${error.response.status} `);
-    console.log(error.response.data);
+    window.location.reload();
 }
 
 function toggleMenuParticipants(x) {
     x.classList.toggle('Hide');
+}*/
+
+function activeParticipants(){
+    const participants = axios.get(urlParticipants);
+    participants.then(showPeople);
+    participants.catch(participantError);
+    setInterval(() =>{
+        const participants = axios.get(urlParticipants);
+        participants.then(showPeople);
+        participants.catch(participantError);
+    },10000)
+}
+
+function showPeople(serverData){
+    const response = serverData.data;
+    let participants = document.getElementById('Participants');
+    participants.innerHTML = `
+            <li>
+                <div>
+                    <img src="images/People 2.svg" alt="">
+                    <p onclick="selectParticipant(this)" class="To">Todos</p>
+                </div>
+                <img src="images/Correct-icon.svg" alt="" id="Img">
+            </li>
+        `
+    console.log(response);
+    for (i=0; i<response.length; i++){
+        participants.innerHTML += `
+        <li>
+            <div>
+                <img src="images/Person-circle.svg" alt="">
+                <p onclick="selectParticipant(this)">${response[i].name}</p>
+            </div>
+        </li>
+        `
+    }
+}
+
+function participantError(error){
+    alert(`Algo deu errado! erro ${error.response.status}`);
+}
+
+function selectParticipant(Selected){
+    let disable = document.querySelector('.To'), img = document.getElementById('Img');
+    let div = Selected.parentNode, li = div.parentNode;
+
+    disable.classList.remove('To');
+    Selected.classList.add('To');
+
+    if (img) {
+        img.parentNode.removeChild(img);
+    }
+    li.innerHTML += '<img src="images/Correct-icon.svg" alt="" id="Img">'
 }
