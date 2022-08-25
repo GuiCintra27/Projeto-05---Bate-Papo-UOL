@@ -32,14 +32,61 @@ function desconnection(){
 }
 
 function showMessages(serverMessage){
-    main.innerHTML += `
-                    <div class="Message">
-                        <p><time>${serverMessage.data[0].time} </time><strong>${serverMessage.data[0].from}</strong> para <strong>${serverMessage.data[0].to}:</strong> ${serverMessage.data[0].text}</p>
-                    </div>
-
-                    <div class="Message">
-                        <p><time>${serverMessage.data[1].time} </time><strong>${serverMessage.data[1].from}</strong> para <strong>${serverMessage.data[1].to}:</strong> ${serverMessage.data[1].text}</p>
-                    </div>`;
+    setInterval(() => {
+        main.innerHTML = '';
+        for (i=0; i < serverMessage.data.length; i++){
+            if (serverMessage.data[i].type !== 'private_message'){
+                if (serverMessage.data[i].type === 'message'){
+                    
+                    if (i === 99){
+                        main.innerHTML += `
+                                    <div class="Message" id="Last_message">
+                                        <p><time>${serverMessage.data[i].time} </time><strong>${serverMessage.data[i].from}</strong> para <strong>${serverMessage.data[i].to}:</strong> ${serverMessage.data[i].text}</p>
+                                    </div>`;
+                        let lastMessage = document.getElementById('Last_message');
+                        lastMessage.scrollIntoView();
+                    }else{
+                        main.innerHTML += `
+                                        <div class="Message">
+                                            <p><time>${serverMessage.data[i].time} </time><strong>${serverMessage.data[i].from}</strong> para <strong>${serverMessage.data[i].to}:</strong> ${serverMessage.data[i].text}</p>
+                                        </div>`;
+                    }
+                    
+                }else{
+                    if (i === 99){
+                        main.innerHTML += `
+                                        <div class="Status Message" id="Last_message">
+                                            <p><time>${serverMessage.data[i].time} </time><strong>${serverMessage.data[i].from}</strong> ${serverMessage.data[i].text}</p>
+                                        </div>`;
+                        let lastMessage = document.getElementById('Last_message');
+                        lastMessage.scrollIntoView();
+                    }else{
+                        main.innerHTML += `
+                                        <div class="Status Message">
+                                            <p><time>${serverMessage.data[i].time} </time><strong>${serverMessage.data[i].from}</strong> ${serverMessage.data[i].text}</p>
+                                        </div>`;
+                    }
+                }
+            }else{
+                if (serverMessage.data[i].to === Login.name){
+                    
+                    if (i === 99){
+                        main.innerHTML += `
+                                        <div class="Reserved Message" id="Last_message">
+                                            <p><time>${serverMessage.data[i].time} </time><strong>${serverMessage.data[i].from}</strong> reservadamente para <strong>${serverMessage.data[i].to}:</strong> ${serverMessage.data[i].text}</p>
+                                        </div>`;
+                        let lastMessage = document.getElementById('Last_message');
+                        lastMessage.scrollIntoView();
+                    }else{
+                        main.innerHTML += `
+                                        <div class="Reserved Message">
+                                            <p><time>${serverMessage.data[i].time} </time><strong>${serverMessage.data[i].from}</strong> reservadamente para <strong>${serverMessage.data[i].to}:</strong> ${serverMessage.data[i].text}</p>
+                                        </div>`;
+                    }
+                }
+            }
+        }
+    }, 3000)
 }
 
 function toggleMenuParticipants(x){
