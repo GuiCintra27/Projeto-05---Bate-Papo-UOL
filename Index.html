@@ -13,7 +13,7 @@
 <body>
 
     <!-- TELA DE LOGIN -->
-    <div id="Login" class="Hide">
+    <div id="Login">
         <img src="images/Logo.svg" alt="Logo">
         <div id="Login-input">
             <input id="Login-name" type="text" placeholder="Digite seu nome">
@@ -29,9 +29,6 @@
 
     <!-- MENSAGENS DE TEXTO -->
     <main>
-        <div class="Reserved Message">
-            <p><time>(09:22:48) </time><strong>João</strong> reservadamente para <strong>Maria:</strong> Oi gatinha quer tc?</p>
-        </div>
     </main>
 
     <!-- ÁREA DE ESCRITA DO USUÁRIO -->
@@ -41,7 +38,7 @@
     </footer>
 
     <!-- MENU DE PARTICIPANTES DO CHAT -->
-    <div id="Menu" onclick="activeParticipants()">
+    <div id="Menu" onclick="activeParticipants()" class="Hide">
         <div id="Transparent" onclick="toggleMenuParticipants(document.getElementById('Menu'))"></div>
         <nav>
             <h3>Escolha um contato para enviar mensagem:</h3>
@@ -51,16 +48,15 @@
             <div id="Public">
                 <div>
                     <img src="images/Lock-open.svg" alt="">
-                    <p class="Type">Público</p>
+                    <p class="Type" onclick="selectMessageMode(this)">Público</p>
                 </div>
-                <img src="images/Correct-icon.svg" alt="" class="Hide">
+                <img src="images/Correct-icon.svg" alt="" id="Img_type">
             </div>
             <div id="Reserved">
                 <div>
                     <img src="images/Lock-closed.svg" alt="">
-                    <p>Reservadamente</p>
+                    <p onclick="selectMessageMode(this)">Reservadamente</p>
                 </div>
-                <img src="images/Correct-icon.svg" alt="" class="Hide">
             </div>
         </nav>
     </div>

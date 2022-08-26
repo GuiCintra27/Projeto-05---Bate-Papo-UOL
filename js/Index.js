@@ -1,10 +1,10 @@
-let Login = '';
+let Login = '', Check = 'Todos';
 const loginScreen = document.getElementById('Login');
 const urlParticipants = 'https://mock-api.driven.com.br/api/v6/uol/participants';
 const urlConnection = 'https://mock-api.driven.com.br/api/v6/uol/status';
 const urlMessages = 'https://mock-api.driven.com.br/api/v6/uol/messages';
 const main = document.querySelector('main');
-/* 
+
 function login(userName) {
     Login = { name: userName.value };
     let loginServer = axios.post(urlParticipants, Login);
@@ -18,6 +18,7 @@ function login(userName) {
 
 function logged() {
     loginScreen.classList.add('Hide');
+    activeParticipants();
     setInterval(() => {
         const messages = axios.get(urlMessages);
         messages.then(showMessages);
@@ -108,6 +109,7 @@ function sendMessage(userMessage) {
         
     if (uMessage.length > 0) {
         const send = axios.post(urlMessages, Message);
+        userMessage = '';
         send.then(messageSent);
         send.catch(messageError);
     }
@@ -125,7 +127,7 @@ function messageError(error){
 
 function toggleMenuParticipants(x) {
     x.classList.toggle('Hide');
-}*/
+}
 
 function activeParticipants(){
     const participants = axios.get(urlParticipants);
@@ -141,25 +143,52 @@ function activeParticipants(){
 function showPeople(serverData){
     const response = serverData.data;
     let participants = document.getElementById('Participants');
-    participants.innerHTML = `
+    participants.innerHTML = ''; 
+    let nameChecked = 0, allChecked = 0;
+    console.log(response);
+
+    for (i=0; i<response.length; i++){
+        if (response[i].name === Check){
+                participants.innerHTML += `
+            <li>
+                <div>
+                    <img src="images/Person-circle.svg" alt="">
+                    <p onclick="selectParticipant(this)" class="To">${response[i].name}</p>
+                </div>
+                <img src="images/Correct-icon.svg" alt="" id="Img">
+            </li>
+            `
+            nameChecked = 1;
+        }else {     
+            participants.innerHTML += `
+            <li>
+                <div>
+                    <img src="images/Person-circle.svg" alt="">
+                    <p onclick="selectParticipant(this)">${response[i].name}</p>
+                </div>
+            </li>
+            `
+        }
+
+        if(i === response.length -1 && nameChecked === 0){
+            participants.innerHTML = `
             <li>
                 <div>
                     <img src="images/People 2.svg" alt="">
                     <p onclick="selectParticipant(this)" class="To">Todos</p>
                 </div>
                 <img src="images/Correct-icon.svg" alt="" id="Img">
-            </li>
-        `
-    console.log(response);
-    for (i=0; i<response.length; i++){
-        participants.innerHTML += `
-        <li>
-            <div>
-                <img src="images/Person-circle.svg" alt="">
-                <p onclick="selectParticipant(this)">${response[i].name}</p>
-            </div>
-        </li>
-        `
+            </li> ` + participants.innerHTML;
+            allChecked = 1;
+        }else if(i === response.length -1 && allChecked === 0){
+            participants.innerHTML = `
+            <li>
+                <div>
+                    <img src="images/People 2.svg" alt="">
+                    <p onclick="selectParticipant(this)">Todos</p>
+                </div>
+            </li> ` + participants.innerHTML;
+        }
     }
 }
 
@@ -178,4 +207,18 @@ function selectParticipant(Selected){
         img.parentNode.removeChild(img);
     }
     li.innerHTML += '<img src="images/Correct-icon.svg" alt="" id="Img">'
+    Check = Selected.innerHTML;
+}
+
+function selectMessageMode(Selected){
+    let disable = document.querySelector('.Type'), img = document.getElementById('Img_type');
+    let div = Selected.parentNode, li = div.parentNode;
+
+    disable.classList.remove('Type');
+    Selected.classList.add('Type');
+
+    if (img) {
+        img.parentNode.removeChild(img);
+    }
+    li.innerHTML += '<img src="images/Correct-icon.svg" alt="" id="Img_type">'
 }
