@@ -109,7 +109,7 @@ function sendMessage(userMessage) {
         
     if (uMessage.length > 0) {
         const send = axios.post(urlMessages, Message);
-        userMessage = '';
+        userMessage.value = '';
         send.then(messageSent);
         send.catch(messageError);
     }
@@ -150,7 +150,7 @@ function showPeople(serverData){
     for (i=0; i<response.length; i++){
         if (response[i].name === Check){
                 participants.innerHTML += `
-            <li>
+            <li data-identifier="participant">
                 <div>
                     <img src="images/Person-circle.svg" alt="">
                     <p onclick="selectParticipant(this)" class="To">${response[i].name}</p>
@@ -161,7 +161,7 @@ function showPeople(serverData){
             nameChecked = 1;
         }else {     
             participants.innerHTML += `
-            <li>
+            <li data-identifier="participant">
                 <div>
                     <img src="images/Person-circle.svg" alt="">
                     <p onclick="selectParticipant(this)">${response[i].name}</p>
@@ -222,3 +222,11 @@ function selectMessageMode(Selected){
     }
     li.innerHTML += '<img src="images/Correct-icon.svg" alt="" id="Img_type">'
 }
+
+/* ENVIAR COM ENTER */
+
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+        sendMessage(document.getElementById('User_message'))
+    }
+  });
